@@ -20,6 +20,7 @@ GHPTests gHPTests = new GHPTests();
 
 
 //}
+/*
 List<string> drivers = new List<string>();
 
 drivers.Add("Chrome");
@@ -52,8 +53,8 @@ foreach (var d in drivers)
     }
     gHPTests.Destruct();
 
-
-}
+*/
+//}
 
 
 //try
@@ -70,5 +71,55 @@ foreach (var d in drivers)
 //    Console.WriteLine("Title Test Failed");
 //}
 //gHPTests.Destruct();
+
+
+List<string> drivers = new List<string>();
+
+drivers.Add("Chrome");
+//drivers.Add("Edge");
+foreach (var d in drivers)
+{
+    AmazonTests az = new AmazonTests();
+
+    switch (d)
+
+    {
+        case "Chrome":
+            az.InitializeChromeDriver();
+            break;
+        case "Edge":
+            az.InitializeEdgeDriver();
+            break;
+
+    }
+    try
+    {
+        //az.TitleTest();
+        //az.LogoClickTest();
+        //az.SearchProductTest();
+        Thread.Sleep(2000);
+        //az.ReloadHomePage();
+        //az.TodaysDealTest();
+        //az.SignInAccListTest();
+        az.SearchAndFilterProductByBrandTest();
+        //az.SortBySelectTest();
+    }
+    catch (AssertionException)
+    {
+        Console.WriteLine("Title Test Failed");
+    }
+    catch(NoSuchElementException nse)
+    {
+        Console.WriteLine(nse.Message);
+
+    }
+
+   az.Destruct();
+
+
+}
+
+
+
 
 
