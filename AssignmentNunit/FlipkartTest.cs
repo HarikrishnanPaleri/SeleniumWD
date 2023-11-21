@@ -45,16 +45,28 @@ namespace AssignmentNunit
             fluentWait.PollingInterval = TimeSpan.FromMilliseconds(100);
             fluentWait.IgnoreExceptionTypes(typeof(NoSuchElementException));
             fluentWait.Message = "Element Not Found";
-            List<string> lstWindow = driver.WindowHandles.ToList();
-            Thread.Sleep(5000);
-            driver.SwitchTo().Window(lstWindow[1]);
-           IWebElement cart = fluentWait.Until(dri => dri.FindElement(By.XPath("//button[@class ='_2KpZ6l _2U9uOA _3v1-ww']")));
+            IWebElement element = driver.FindElement(By.ClassName("_352bdz"));
+            ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView(true)", element);
+           
+            IWebElement cart = fluentWait.Until(dri => dri.FindElement(By.XPath("//button[@class ='_2KpZ6l _2U9uOA _3v1-ww']")));
             cart.Click();
+          
+
             Thread.Sleep(5000);
-           IWebElement gotocart = fluentWait.Until(dri => dri.FindElement(By.XPath("//div[@class ='KK-o3G']")));
+            IWebElement gotocart = fluentWait.Until(dri => dri.FindElement(By.ClassName("_3SkBxJ")));
             gotocart.Click();
             Thread.Sleep(2000);
 
+            IWebElement placeorder = fluentWait.Until(dri => dri.FindElement(By.XPath("//button[@class ='_2KpZ6l _2ObVJD _3AWRsL']")));
+            placeorder.Click();
+            Thread.Sleep(2000);
+
+            IWebElement emailInput = fluentWait.Until(dri => dri.FindElement(By.XPath("//input[@class='_2IX_2- _17N0em']")));
+            emailInput.SendKeys("hari444.paleri@gmail.com");
+            Thread.Sleep(3000);
+            IWebElement continuebutton = fluentWait.Until(dri => dri.FindElement(By.XPath("//button[@class ='_2KpZ6l _20xBvF _3AWRsL']")));
+            continuebutton.Click();
+            Thread.Sleep(5000);
 
 
         }

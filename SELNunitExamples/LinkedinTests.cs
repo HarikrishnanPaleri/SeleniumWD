@@ -110,6 +110,11 @@ namespace SELNunitExamples
             IWebElement passwordInput = fluentWait.Until(dri => dri.FindElement(By.Id("session_password")));
             emailInput.SendKeys(email);
             passwordInput.SendKeys(password);
+            TakeScreenshot();
+            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+            js.ExecuteScript("arguments[0].scrollIntoView(true);", driver.FindElement(By.XPath("//button[@type ='submit']")));
+            Thread.Sleep(5000);
+            js.ExecuteScript("arguments[0].click()", driver.FindElement(By.XPath("//button[@type ='submit']"))) ;
             ClearForm(emailInput);
             ClearForm(passwordInput);
         }
@@ -122,5 +127,6 @@ namespace SELNunitExamples
                 new object[] { "def@xyz.com", "5678" }
             };
         }
+      
     }
 }

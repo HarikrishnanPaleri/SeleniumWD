@@ -66,6 +66,17 @@ namespace SELNunitExamples
               return false;
             }
         }
+
+
+        public void TakeScreenshot()
+        {
+            ITakesScreenshot its = (ITakesScreenshot)driver;
+            Screenshot ss = its.GetScreenshot();
+            string currDir = Directory.GetParent(@"../../../").FullName;
+            string filepath = currDir + "/Screenshots/ss_" + DateTime.Now.ToString("yyyyy-MM-dd_hh-mm-ss") + ".png";
+            ss.SaveAsFile(filepath);
+        }
+
         [OneTimeTearDown]
         public void Cleanup() 
         {
