@@ -10,7 +10,7 @@ namespace Naaptol.PageObjects
 {
     internal class SearchedProductList
     {
-        IWebDriver? driver = null;
+        IWebDriver? driver;
         public SearchedProductList(IWebDriver driver)
         {
 
@@ -25,6 +25,11 @@ namespace Naaptol.PageObjects
             
             SelectProduct?.Click();
             return new GoToCart(driver);
+        }
+        public string GetTitle()
+        {
+            string title = driver.Url;
+            return title;
         }
     }
 }

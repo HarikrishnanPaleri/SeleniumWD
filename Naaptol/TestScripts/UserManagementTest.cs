@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing.Printing;
+using OpenQA.Selenium;
 
 namespace Naaptol.TestScripts
 {
@@ -63,6 +64,9 @@ namespace Naaptol.TestScripts
             driver.SwitchTo().Window(lstWindow[1]);
             SelectProd.SelectSize();
             SelectProd.GoCartButtonClick();
+            Thread.Sleep(2000);
+            string url = productsearchp.GetTitle();
+            Assert.That(url, Is.EqualTo(driver.FindElement(By.XPath("//a[contains(text(),'LRG4)')]")).GetAttribute("href")));
 
 
 

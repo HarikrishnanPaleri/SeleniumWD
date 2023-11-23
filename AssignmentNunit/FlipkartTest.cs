@@ -29,7 +29,7 @@ namespace AssignmentNunit
             searchinput.SendKeys("laptops");
             searchinput.SendKeys(Keys.Enter);
             Assert.That(driver.Title.Contains("Laptops"));
-            fluentWait.Until(dri => dri.FindElement(By.XPath("//div[@class='_2kHMtA'][1]"))).Click();
+            fluentWait.Until(dri => dri.FindElement(By.XPath("//a[text() = 'Black-2.50']"))).Click();
             Thread.Sleep(4000);
             List<string> lstWindow = driver.WindowHandles.ToList();
              driver.SwitchTo().Window(lstWindow[1]);
