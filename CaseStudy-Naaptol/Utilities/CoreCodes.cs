@@ -1,6 +1,4 @@
-﻿using AventStack.ExtentReports;
-using AventStack.ExtentReports.Reporter;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.DevTools.V117.Page;
 using OpenQA.Selenium.Edge;
@@ -10,16 +8,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BunnyCart
+namespace CaseStudy_Naaptol
 {
     internal class CoreCodes
     {
         Dictionary<string, string> ?properties;
         public IWebDriver driver;
-        public ExtentReports extent;
-        ExtentSparkReporter sparkReporter;
-        public ExtentTest test;
-
         public void ReadConfigSettings()
         {
             string currDir = Directory.GetParent(@"../../../").FullName;
@@ -40,13 +34,6 @@ namespace BunnyCart
         [OneTimeSetUp] 
         public void InitializeBrowser() 
         {
-
-            string currDir = Directory.GetParent(@"../../../").FullName;
-            extent = new ExtentReports();
-            sparkReporter = new ExtentSparkReporter(currDir + "/ExtentReports/extent-report"
-                + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".html");
-
-            extent.AttachReporter(sparkReporter);
             ReadConfigSettings();
                 if (properties["browser"].ToLower() =="chrome")
             {
@@ -89,18 +76,11 @@ namespace BunnyCart
             string filepath = currDir + "/Screenshots/ss_" + DateTime.Now.ToString("yyyyy-MM-dd_hh-mm-ss") + ".png";
             ss.SaveAsFile(filepath);
         }
-        static void ScrollIntoView(IWebDriver driver, IWebElement element)
-
-        {
-            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
-            js.ExecuteScript("arguments[0].scrollIntoView(true);", element);
-        }
 
         [OneTimeTearDown]
         public void Cleanup() 
         {
          driver.Quit();
-         extent.Flush();
         }
     }
 }

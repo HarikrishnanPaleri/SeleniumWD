@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
+    <RootNamespace>CaseStudy_Naaptol</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 
@@ -10,7 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-	  <PackageReference Include="DotNetSeleniumExtras.PageObjects" Version="3.11.0" />
+	    <PackageReference Include="DotNetSeleniumExtras.PageObjects" Version="3.11.0" />
 	  <PackageReference Include="DotNetSeleniumExtras.PageObjects.Core" Version="4.14.1" />
 	  <PackageReference Include="DotNetSeleniumExtras.WaitHelpers" Version="3.11.0" />
 	  <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.7.1" />
@@ -26,7 +27,6 @@
 
   <ItemGroup>
     <Folder Include="Screenshots\" />
-    <Folder Include="Utilities\Screenshots\" />
   </ItemGroup>
 
 </Project>
